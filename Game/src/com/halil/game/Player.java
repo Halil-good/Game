@@ -15,16 +15,16 @@ public class Player extends Entity {
 
 	public void update() {
 		if (KeyInput.isKeyPressed(KeyEvent.VK_D)) {
-			x += velX;
+			Handler.moveWithSkipping(-velX, 0, this);
 		}
 		if (KeyInput.isKeyPressed(KeyEvent.VK_A)) {
-			x -= velX;
+			Handler.moveWithSkipping(velX, 0, this);
 		}
 		if (KeyInput.isKeyPressed(KeyEvent.VK_W)) {
-			y -= velY;
+			Handler.moveWithSkipping(0, velY, this);
 		}
 		if (KeyInput.isKeyPressed(KeyEvent.VK_S)) {
-			y += velY;
+			Handler.moveWithSkipping(0, -velY, this);
 		}
 	}
 

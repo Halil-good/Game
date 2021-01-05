@@ -13,15 +13,13 @@ public class Game extends Canvas implements Runnable {
 
 	private Thread thread;
 	private boolean running = false;
-	
-	private Handler handler = new Handler();
 
 	public Game() {
 		this.addKeyListener(new KeyInput());
-		
 		new Window(WIDTH, HEIGHT, "Game", this);
-		
-		handler.addObject(new Player(100, 100));
+
+		new Player(WIDTH / 2 - 32, HEIGHT / 2 - 32);
+		new Wood(100, 100);
 	}
 
 	public synchronized void start() {
@@ -68,7 +66,7 @@ public class Game extends Canvas implements Runnable {
 	}
 
 	private void update() {
-		handler.update();
+		Handler.update();
 	}
 
 	private void render() {
@@ -77,14 +75,14 @@ public class Game extends Canvas implements Runnable {
 			this.createBufferStrategy(3);
 			return;
 		}
-		
+
 		Graphics g = bs.getDrawGraphics();
-		
+
 		g.setColor(Color.black);
 		g.fillRect(0, 0, WIDTH, HEIGHT);
-		
-		handler.render(g);
-		
+
+		Handler.render(g);
+
 		g.dispose();
 		bs.show();
 	}
